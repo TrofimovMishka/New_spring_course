@@ -7,10 +7,25 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <context:property-placeholder location="classpath:myApp.properties"/> <!-- add file properties -->
+
     <bean id="myDog"
           class="spring_introduction.Dog">
     </bean>
+
     <bean id="myCat"
           class="spring_introduction.Cat">
     </bean>
+
+    <bean id="myPerson"
+          class="spring_introduction.Person">
+<!--        <constructor-arg ref="myCat"/> &lt;!&ndash;dependency injection using constructor  &ndash;&gt;-->
+        <property name="pet" ref="myDog"/> <!--dependency injection using setters-->
+<!--        <property name="surName" value = "Trofimov"/> &lt;!&ndash;dependency injection field hardCode&ndash;&gt;-->
+        <property name="surName" value = "${person.surName}"/> <!--dependency injection field hardCode-->
+<!--        <property name="age" value = "30"/> &lt;!&ndash;dependency injection field hardCode&ndash;&gt;-->
+        <property name="age" value = "${person.age}"/> <!--dependency injection field hardCode-->
+
+    </bean>
+
  </beans>
