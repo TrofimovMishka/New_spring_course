@@ -10,30 +10,47 @@ import org.springframework.stereotype.Component;
 // и нобходимо добавить их в проект file/projectStructure/libraries/+/ выбрать jar file/apply/ok
 public class LoggingAndSecurityAspect {
 
-    @Pointcut("execution(* aop.UniLibrary.get*())")
-    private void allGetMethodsFromUniLibrary(){}
+    @Pointcut("execution(* aop.UniLibrary.*(..))")
+    private void allMethodsFromUniLibrary(){}
 
-    @Pointcut("execution(* aop.UniLibrary.return*())")
-    private void allReturnMethodsFromUniLibrary(){}
+    @Pointcut("execution(public void aop.UniLibrary.returnMagazine())")
+    private void returnMagazineFromUniLibrary(){}
 
+    @Pointcut("allMethodsFromUniLibrary() && !returnMagazineFromUniLibrary()")
+    private void allMethodsExceptReturnMagazineFromUniLibrary(){}
 
-    @Pointcut("allGetMethodsFromUniLibrary() || allReturnMethodsFromUniLibrary()") // Комбинирование pointcut
-    private void allGetAndReturnMethodsFromUniLibrary(){}
-
-    @Before("allGetMethodsFromUniLibrary()")
-    public void beforeGetLoggingAdvice(){
-        System.out.println("beforeGetLoggingAdvice: writing Log #1");
+    @Before("allMethodsExceptReturnMagazineFromUniLibrary()")
+    public void beforeAllMethodsExceptReturnMagazine(){
+        System.out.println("beforeAllMethodsExceptReturnMagazine: writing Log #4");
     }
 
-    @Before("allReturnMethodsFromUniLibrary()")
-    public void beforeReturnLoggingAdvice(){
-        System.out.println("beforeReturnLoggingAdvice: writing Log #2");
-    }
 
-    @Before("allGetAndReturnMethodsFromUniLibrary()")
-    public void beforeGetAndReturnLoggingAdvice(){
-        System.out.println("beforeGetAndReturnLoggingAdvice: writing Log #3");
-    }
+
+//
+//    @Pointcut("execution(* aop.UniLibrary.get*())")
+//    private void allGetMethodsFromUniLibrary(){}
+//
+//    @Pointcut("execution(* aop.UniLibrary.return*())")
+//    private void allReturnMethodsFromUniLibrary(){}
+//
+//
+//    @Pointcut("allGetMethodsFromUniLibrary() || allReturnMethodsFromUniLibrary()") // Комбинирование pointcut
+//    private void allGetAndReturnMethodsFromUniLibrary(){}
+//
+//    @Before("allGetMethodsFromUniLibrary()")
+//    public void beforeGetLoggingAdvice(){
+//        System.out.println("beforeGetLoggingAdvice: writing Log #1");
+//    }
+//
+//    @Before("allReturnMethodsFromUniLibrary()")
+//    public void beforeReturnLoggingAdvice(){
+//        System.out.println("beforeReturnLoggingAdvice: writing Log #2");
+//    }
+//
+//    @Before("allGetAndReturnMethodsFromUniLibrary()")
+//    public void beforeGetAndReturnLoggingAdvice(){
+//        System.out.println("beforeGetAndReturnLoggingAdvice: writing Log #3");
+//    }
 
 
 
