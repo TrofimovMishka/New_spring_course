@@ -9,13 +9,42 @@ import org.springframework.stereotype.Component;
 @Aspect  // Чтобы это сработало необходимо добавить AspectJ Weaver через maven например нуженн именно jar file
 // и нобходимо добавить их в проект file/projectStructure/libraries/+/ выбрать jar file/apply/ok
 public class LoggingAndSecurityAspect {
-    @Pointcut("execution(* get*())")  // Объявили pointcut
-    private void allGetMethods(){}  // Это имя теперь пользем везде где такой pointcut подойдет!
 
-    @Before("allGetMethods()") // Пользуем готовый метод pointcut
-    public void beforeGetSecurityAdvice(){
-        System.out.println("beforeGetSecurityAdvice: check access");
+    @Pointcut("execution(* aop.UniLibrary.get*())")
+    private void allGetMethodsFromUniLibrary(){}
+
+    @Pointcut("execution(* aop.UniLibrary.return*())")
+    private void allReturnMethodsFromUniLibrary(){}
+
+
+    @Pointcut("allGetMethodsFromUniLibrary() || allReturnMethodsFromUniLibrary()") // Комбинирование pointcut
+    private void allGetAndReturnMethodsFromUniLibrary(){}
+
+    @Before("allGetMethodsFromUniLibrary()")
+    public void beforeGetLoggingAdvice(){
+        System.out.println("beforeGetLoggingAdvice: writing Log #1");
     }
+
+    @Before("allReturnMethodsFromUniLibrary()")
+    public void beforeReturnLoggingAdvice(){
+        System.out.println("beforeReturnLoggingAdvice: writing Log #2");
+    }
+
+    @Before("allGetAndReturnMethodsFromUniLibrary()")
+    public void beforeGetAndReturnLoggingAdvice(){
+        System.out.println("beforeGetAndReturnLoggingAdvice: writing Log #3");
+    }
+
+
+
+
+//    @Pointcut("execution(* get*())")  // Объявили pointcut
+//    private void allGetMethods(){}  // Это имя теперь пользем везде где такой pointcut подойдет!
+//
+//    @Before("allGetMethods()") // Пользуем готовый метод pointcut
+//    public void beforeGetSecurityAdvice(){
+//        System.out.println("beforeGetSecurityAdvice: check access");
+//    }
 
     //Pointcut 1)
     //    @Before("execution(public void aop.UniLibrary.getBook())") // pointCat - пишем перед каким методом выполнить beforeGetBookAdvice
@@ -56,11 +85,11 @@ public class LoggingAndSecurityAspect {
 //        System.out.println("beforeGetBookAdvice : try get book");
 //    }
 //
-    //Pointcut 8 )
-    @Before("allGetMethods()")  // Пользуем готовый метод pointcut
-    public void beforeGetLoggingAdvice(){
-        System.out.println("beforeGetLoggingAdvice : try get book or magazine");
-    }
+//    //Pointcut 8 )
+//    @Before("allGetMethods()")  // Пользуем готовый метод pointcut
+//    public void beforeGetLoggingAdvice(){
+//        System.out.println("beforeGetLoggingAdvice : try get book or magazine");
+//    }
 //
 //    @Before("execution(public * returnBook())") // use "*" for all return type
 //    public void beforeReturnBookAdvice(){
