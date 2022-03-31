@@ -10,9 +10,10 @@ import org.springframework.stereotype.Component;
 @Order(2)
 public class SecurityAspect {
 
-    @Before("aop.aspects.MyPointCuts.allGetMethods()") //Если Пользуем готовый pointcut из другого класа - то необходимо
+    @Before("aop.aspects.MyPointCuts.allAddMethods()") //Если Пользуем готовый pointcut из другого класа - то необходимо
     // прописать полный путь к этому pointcut-у
-    public void beforeGetSecurityAdvice(){
-        System.out.println("beforeGetSecurityAdvice: check access");
+    public void beforeAddSecurityAdvice(){
+        System.out.println("beforeAddSecurityAdvice: check access");
+        System.out.println("----------------------------------------------------------------------------");
     }
 }
