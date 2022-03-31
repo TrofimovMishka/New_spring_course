@@ -12,9 +12,9 @@ public class Test1 {
 
 //            uniLibrary.getBook("Bimbo");
             uniLibrary.getBook();
-//            uniLibrary.getMagazine();
-            uniLibrary.returnMagazine();
-            uniLibrary.addBook();
+            uniLibrary.getMagazine();
+//            uniLibrary.returnMagazine();
+//            uniLibrary.addBook();
 //            uniLibrary.returnBook();
 
             SchoolLibrary schoolLibrary = context.getBean("schoolLibrary", SchoolLibrary.class);

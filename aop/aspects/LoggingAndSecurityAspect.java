@@ -10,19 +10,19 @@ import org.springframework.stereotype.Component;
 // и нобходимо добавить их в проект file/projectStructure/libraries/+/ выбрать jar file/apply/ok
 public class LoggingAndSecurityAspect {
 
-    @Pointcut("execution(* aop.UniLibrary.*(..))")
-    private void allMethodsFromUniLibrary(){}
-
-    @Pointcut("execution(public void aop.UniLibrary.returnMagazine())")
-    private void returnMagazineFromUniLibrary(){}
-
-    @Pointcut("allMethodsFromUniLibrary() && !returnMagazineFromUniLibrary()")
-    private void allMethodsExceptReturnMagazineFromUniLibrary(){}
-
-    @Before("allMethodsExceptReturnMagazineFromUniLibrary()")
-    public void beforeAllMethodsExceptReturnMagazine(){
-        System.out.println("beforeAllMethodsExceptReturnMagazine: writing Log #4");
-    }
+//    @Pointcut("execution(* aop.UniLibrary.*(..))")
+//    private void allMethodsFromUniLibrary(){}
+//
+//    @Pointcut("execution(public void aop.UniLibrary.returnMagazine())")
+//    private void returnMagazineFromUniLibrary(){}
+//
+//    @Pointcut("allMethodsFromUniLibrary() && !returnMagazineFromUniLibrary()")
+//    private void allMethodsExceptReturnMagazineFromUniLibrary(){}
+//
+//    @Before("allMethodsExceptReturnMagazineFromUniLibrary()")
+//    public void beforeAllMethodsExceptReturnMagazine(){
+//        System.out.println("beforeAllMethodsExceptReturnMagazine: writing Log #4");
+//    }
 
 
 
@@ -58,10 +58,7 @@ public class LoggingAndSecurityAspect {
 //    @Pointcut("execution(* get*())")  // Объявили pointcut
 //    private void allGetMethods(){}  // Это имя теперь пользем везде где такой pointcut подойдет!
 //
-//    @Before("allGetMethods()") // Пользуем готовый метод pointcut
-//    public void beforeGetSecurityAdvice(){
-//        System.out.println("beforeGetSecurityAdvice: check access");
-//    }
+
 
     //Pointcut 1)
     //    @Before("execution(public void aop.UniLibrary.getBook())") // pointCat - пишем перед каким методом выполнить beforeGetBookAdvice
@@ -102,11 +99,7 @@ public class LoggingAndSecurityAspect {
 //        System.out.println("beforeGetBookAdvice : try get book");
 //    }
 //
-//    //Pointcut 8 )
-//    @Before("allGetMethods()")  // Пользуем готовый метод pointcut
-//    public void beforeGetLoggingAdvice(){
-//        System.out.println("beforeGetLoggingAdvice : try get book or magazine");
-//    }
+
 //
 //    @Before("execution(public * returnBook())") // use "*" for all return type
 //    public void beforeReturnBookAdvice(){
