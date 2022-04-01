@@ -8,6 +8,6 @@ public class MyPointCuts {
 //    @Pointcut("execution(* get*())")
 //    public void allGetMethods(){}
 
-    @Pointcut("execution(* add*(..))")
+    @Pointcut("execution(* addc*(..))")
     public void allAddMethods(){}
 }
