@@ -18,16 +18,16 @@ public class UniLibrary extends AbstractLibrary {
         System.out.println("----------------------------------------------------------------------------");
     }
 
-//    public String returnBook(){
-//        System.out.println("We return book");
-//        return "Ok, we return this book";
-//    }
-
-    public void returnBook() {
-        System.out.println("We return book");
-        System.out.println("----------------------------------------------------------------------------");
-
+    public String returnBook(){
+        System.out.println("returnBook: We return book");
+        return "Vojna i Mir";
     }
+
+//    public void returnBook() {
+//        System.out.println("We return book");
+//        System.out.println("----------------------------------------------------------------------------");
+//
+//    }
 
     public void getMagazine() {
         System.out.println("We get Magazine from uniLibrary");
