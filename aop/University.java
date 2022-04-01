@@ -21,7 +21,7 @@ public class University {
     public List<Student> getStudents(){
         System.out.println("Method getStudents start");
 
-        System.out.println(students.get(5)); // throw Exception - for example
+//        System.out.println(students.get(5)); // throw Exception - for example
 
         System.out.println("information from method getStudents");
         System.out.println(students);

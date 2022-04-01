@@ -2,10 +2,7 @@ package aop.aspects;
 
 import aop.Student;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -13,10 +10,10 @@ import java.util.List;
 @Component
 @Aspect
 public class UniversityLoggingAspect {
-    @Before("execution(* getStudents())")
-    public void beforeGetStudentsLoggingAdvice(){   // Отработает ДО метода основной логики
-        System.out.println("beforeGetStudentsLoggingAdvice: add log get list of students BEFORE the method getStudents");
-    }
+//    @Before("execution(* getStudents())")
+//    public void beforeGetStudentsLoggingAdvice(){   // Отработает ДО метода основной логики
+//        System.out.println("beforeGetStudentsLoggingAdvice: add log get list of students BEFORE the method getStudents");
+//    }
 
 //    @AfterReturning("execution(* getStudents())")   // Отработает ПОСЛЕ метода основной логики
 //    public void afterReturningGetStudentsLoggingAdvice(){
@@ -43,8 +40,13 @@ public class UniversityLoggingAspect {
 //        System.out.println("afterThrowingGetStudentsLoggingAdvice: Logging some Exception from the method");
 //    }
 
-    @AfterThrowing(pointcut = "execution(* getStudents())", throwing = "exception")  // Достаем инфу о Exception
-    public void afterThrowingGetStudentsLoggingAdvice(Throwable exception){
-        System.out.println("afterThrowingGetStudentsLoggingAdvice: Logging some Exception from the method : " + exception);
+//    @AfterThrowing(pointcut = "execution(* getStudents())", throwing = "exception")  // Достаем инфу о Exception
+//    public void afterThrowingGetStudentsLoggingAdvice(Throwable exception){
+//        System.out.println("afterThrowingGetStudentsLoggingAdvice: Logging some Exception from the method : " + exception);
+//    }
+
+    @After("execution(* getStudents())")
+    public void afterGetStudentsLoggingAdvice(){
+        System.out.println("afterGetStudentsLoggingAdvice:  Logging normal finish of method or Exception");
     }
 }
