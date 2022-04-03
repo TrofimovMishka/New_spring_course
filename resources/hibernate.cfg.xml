@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.url">jdbc:mysql://localhost:3306/my_db?useSSL=false&amp;serverTimezone=UTC</property> <!-- Прописываем где находится наша БД -->
+        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>  <!-- Какой драйвер JDBC пользуем-->
+        <property name="connection.username">bestuser</property>  <!-- имя учерной записи при создании БД-->
+        <property name="connection.password">bestuser</property>  <!-- пароль-->
+
+        <property name="current_session_context_class">thread</property> <!-- к какому thread - у будет привязана БДю. Если указать как сдесь - то привязка к текущему треду-->
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property> <!-- Прописываем вид SQL что используем-->
+        <property name="show_sql">true</property> <!-- для тестирования. В консоли видно какое выражение на языке sql  было послано нашей БД. Чтобы отображались values нужно подключить и настроить logForJ-->
+
+    </session-factory>
+</hibernate-configuration>
