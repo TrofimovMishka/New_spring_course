@@ -1,14 +1,12 @@
 package hibernate_test.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "employees") //Указывать имя таблицы как в MySQL называется таблица
 public class Employee { // если клас и табл. имеют одинаковые имена - то вышенаписанное можно пропустить
     @Id //Указывает что это Primery Key
+    @GeneratedValue (strategy = GenerationType.IDENTITY) // Стратегия по созданию значения с Primery Key
     @Column(name="id") // name -> имя столбца в таблице БД
     private int id; // если поле называется так же как столбец то выше указаное можно не писать. Но лучше писать
 
