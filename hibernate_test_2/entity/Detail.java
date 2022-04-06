@@ -19,6 +19,11 @@ public class Detail {
     @Column(name = "email")
     private String email;
 
+//    @OneToOne(mappedBy = "detail", cascade = CascadeType.ALL)  // Для реализации bi-derectional.// При удалении деталей удалаяем и работника при CascadeType.ALL
+    // "detail" - это имя поля в классе Employee где связь уже есть . mappedBy - указывает что связь буже есть и еее нужно искать в поле detail
+    @OneToOne(mappedBy = "detail", cascade = {CascadeType.PERSIST, CascadeType.REFRESH}) // так можно установить чтобы при удалении деталей мы не удаляли работника из таблицы
+    private Employee employee;
+
     public Detail() {
     }
 
@@ -68,5 +73,13 @@ public class Detail {
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 }
