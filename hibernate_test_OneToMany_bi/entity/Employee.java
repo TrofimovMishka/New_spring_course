@@ -1,4 +1,4 @@
-package hibernate_test_OneToOne.entity;
+package hibernate_test_OneToMany_bi.entity;
 
 import javax.persistence.*;
 
@@ -16,65 +16,28 @@ public class Employee { // если клас и табл. имеют одина�
     @Column(name = "surname")
     private String surname;
 
-    @Column(name = "department")
-    private String department;
-
     @Column(name = "salary")
     private int salary;
 
-    @OneToOne(cascade = CascadeType.ALL) // Выполняются операции и на связанных с ним елементов
-    @JoinColumn(name = "details_id")
-    private Detail detail;
-
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.REFRESH, CascadeType.MERGE})
+    @JoinColumn(name = "department_id")
+    private Department department;
 
     public Employee() {
     }
 
-    public Employee(String name, String surName, String department, int salary) {
+    public Employee(String name, String surname, int salary) {
         this.name = name;
-        this.surname = surName;
-        this.department = department;
+        this.surname = surname;
         this.salary = salary;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getDepartment() {
+    public Department getDepartment() {
         return department;
     }
 
-    public void setDepartment(String department) {
+    public void setDepartment(Department department) {
         this.department = department;
-    }
-
-    public int getSalary() {
-        return salary;
-    }
-
-    public void setSalary(int salary) {
-        this.salary = salary;
     }
 
     @Override
@@ -83,16 +46,7 @@ public class Employee { // если клас и табл. имеют одина�
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", department='" + department + '\'' +
                 ", salary=" + salary +
                 '}';
-    }
-
-    public Detail getDetail() {
-        return detail;
-    }
-
-    public void setDetail(Detail detail) {
-        this.detail = detail;
     }
 }
