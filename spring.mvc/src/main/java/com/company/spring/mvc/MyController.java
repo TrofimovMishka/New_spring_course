@@ -2,10 +2,9 @@ package com.company.spring.mvc;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import javax.servlet.http.HttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -23,13 +22,21 @@ public class MyController {
 
     }
 
-<<<<<<< HEAD
+//    @RequestMapping("/askDetails") // если есть RequestMapping у класса этот URL примет вид -> /employee/askDetails
+//    public String askEmployeeDetails() {
+//        return "ask-emp-details-view";
+//    }
+
     @RequestMapping("/askDetails") // если есть RequestMapping у класса этот URL примет вид -> /employee/askDetails
-=======
-    @RequestMapping("/askDetails")
->>>>>>> main
-    public String askEmployeeDetails() {
+    public String askEmployeeDetails(Model model) {
+        model.addAttribute("employee", new Employee());
         return "ask-emp-details-view";
+    }
+
+    @RequestMapping("/showDetails")
+    public String showEmployeeDetails(@ModelAttribute("employee") Employee emp){ // указываем какой атрибут будет использовать метод - @ModelAttribute("employee") Employee emp
+        // Тут можем изменять наш полученный обьект ка нам нужно
+        return "show-emp-details-view";
     }
 
 //    @RequestMapping("/showDetails")
@@ -37,7 +44,6 @@ public class MyController {
 //        return "show-emp-details-view";
 //    }
 
-<<<<<<< HEAD
 //    @RequestMapping("/showDetails")
 //    public String showEmployeeDetails(HttpServletRequest request, Model model) { // request - содержит всю инфу о запросе!!!
 //        String empName = "Mr. " + request.getParameter("employeeName"); // employeeName - это имя из файла ask-epm-details-view
@@ -49,18 +55,13 @@ public class MyController {
 //    }
 
     // Другой метод получения данных из запроса
-    @RequestMapping("/showDetails")
-    public String showEmployeeDetails(@RequestParam("employeeName") String empName, Model model) { // employeeName - это имя из файла ask-epm-details-view
-        empName = "Mr. " + empName;
-=======
-    @RequestMapping("/showDetails")
-    public String showEmployeeDetails(HttpServletRequest request, Model model) { // request - содержит всю инфу о запросе!!!
-        String empName = "Mr. " + request.getParameter("employeeName"); // employeeName - это имя из файла ask-epm-details-view
->>>>>>> main
-        //Добавим в модель значение кот необходимо сохранить
-        model.addAttribute("nameAttribute", empName);//nameAttribute - имя атрибута(называй как нужно) и его значение - empName
-        model.addAttribute("description", " - teacher");
-
-        return "show-emp-details-view";
-    }
+//    @RequestMapping("/showDetails")
+//    public String showEmployeeDetails(@RequestParam("employeeName") String empName, Model model) { // employeeName - это имя из файла ask-epm-details-view
+//        empName = "Mr. " + empName;
+//        //Добавим в модель значение кот необходимо сохранить
+//        model.addAttribute("nameAttribute", empName);//nameAttribute - имя атрибута(называй как нужно) и его значение - empName
+//        model.addAttribute("description", " - teacher");
+//
+//        return "show-emp-details-view";
+//    }
 }
