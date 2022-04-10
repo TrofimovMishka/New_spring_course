@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 //@RequestMapping("/employee") // можно исп для класса
 public class MyController {
@@ -21,7 +23,11 @@ public class MyController {
 
     }
 
+<<<<<<< HEAD
     @RequestMapping("/askDetails") // если есть RequestMapping у класса этот URL примет вид -> /employee/askDetails
+=======
+    @RequestMapping("/askDetails")
+>>>>>>> main
     public String askEmployeeDetails() {
         return "ask-emp-details-view";
     }
@@ -31,6 +37,7 @@ public class MyController {
 //        return "show-emp-details-view";
 //    }
 
+<<<<<<< HEAD
 //    @RequestMapping("/showDetails")
 //    public String showEmployeeDetails(HttpServletRequest request, Model model) { // request - содержит всю инфу о запросе!!!
 //        String empName = "Mr. " + request.getParameter("employeeName"); // employeeName - это имя из файла ask-epm-details-view
@@ -45,6 +52,11 @@ public class MyController {
     @RequestMapping("/showDetails")
     public String showEmployeeDetails(@RequestParam("employeeName") String empName, Model model) { // employeeName - это имя из файла ask-epm-details-view
         empName = "Mr. " + empName;
+=======
+    @RequestMapping("/showDetails")
+    public String showEmployeeDetails(HttpServletRequest request, Model model) { // request - содержит всю инфу о запросе!!!
+        String empName = "Mr. " + request.getParameter("employeeName"); // employeeName - это имя из файла ask-epm-details-view
+>>>>>>> main
         //Добавим в модель значение кот необходимо сохранить
         model.addAttribute("nameAttribute", empName);//nameAttribute - имя атрибута(называй как нужно) и его значение - empName
         model.addAttribute("description", " - teacher");
