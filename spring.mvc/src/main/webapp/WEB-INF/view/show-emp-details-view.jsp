@@ -37,6 +37,9 @@
 
     <br>
     Phone number: ${employee.phoneNumber}
+    <br>
+    Email : ${employee.email}
+
     <h3/>
 </body>
 

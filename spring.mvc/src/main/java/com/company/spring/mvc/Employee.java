@@ -1,5 +1,7 @@
 package com.company.spring.mvc;
 
+import com.company.spring.mvc.validation.CheckEmail;
+
 import javax.validation.constraints.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,6 +24,10 @@ public class Employee {
     private String[] languages;
     private Map<String, String> languagesList;
 
+//    @CheckEmail(value = "abc.com", message = "email must ends abc.com") // Саме создали эту аннотацию
+    @CheckEmail
+    private String email;
+
     @Pattern(regexp = "\\d{3}-\\d{2}-\\d{2}", message = "use pattern xxx-xx-xx") // Проверка вводимых данных по регулярке
     private String phoneNumber;
 
@@ -41,6 +47,14 @@ public class Employee {
         languagesList.put("Deutch", "DE");
         languagesList.put("French", "FR");
 
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPhoneNumber() {
