@@ -22,7 +22,23 @@
     <br><br>
     Salary <form:input path="salary" />
     <br><br>
+<%--    <!-- Организовываем выпадающий список: hard code-->--%>
+<%--    Department <form:select path="department">--%>
+<%--        <!--Опции при раскрытии списка:-->--%>
+<%--        <form:option value="Information Technology" label="IT"/>--%>
+<%--        <form:option value="Human Resouse" label="HR"/>--%>
+<%--        <form:option value="Sales" label="Sales"/>--%>
+<%--    </form:select>--%>
+<%--    <br><br>--%>
+    <!-- Организовываем выпадающий список: Чтобы не хардкодить имена департаментов создадим в классе Employee мапу с департаментами-->
+    Department <form:select path="department">--%>
+            <!--Опции при раскрытии списка:-->
+            <form:options items="${employee.departments}"/>
+        </form:select>
+        <br><br>
+
     <input type="submit" value="Ok"> <!-- Создаем нопку с надписью Ok-->
+    
 </form:form>
 
 </form>
