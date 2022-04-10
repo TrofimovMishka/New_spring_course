@@ -18,10 +18,16 @@
 
 <form:form action="showDetails" modelAttribute="employee"> <!-- modelAttribute="employee" - это то что создаем в методе askEmployeeDetails контроллера-->
     Name <form:input path="name"/> <!-- Создаем форму ввода с надписью Name кот будет хранить в переменной name введенную пользователем инфу и это поле из атрибута modelAttribute="employee"-->
+    <%--    Указываем что поле может выбросить сообщение отб не правильных данных--%>
+    <form:errors path="name"/>
     <br><br>
     Surname <form:input path="surname"/>
+    <%--    Указываем что поле может выбросить сообщение отб не правильных данных--%>
+    <form:errors path="surname"/>
     <br><br>
     Salary <form:input path="salary" />
+    <%--    Указываем что поле может выбросить сообщение отб не правильных данных--%>
+    <form:errors path="salary"/>
     <br><br>
 <%--    <!-- Организовываем выпадающий список: hard code-->--%>
 <%--    Department <form:select path="department">--%>
@@ -60,6 +66,11 @@
     <!-- Организовываем флаги()множеств. Чтобы не хардкодить языки создадим в классе Employee мапу с языками -->
     Foreign languages?
     <form:checkboxes path="languages" items="${employee.languagesList}"/>
+    <br><br>
+
+    phone number <form:input path="phoneNumber"/>
+    <form:errors path="phoneNumber"/>
+
     <br><br>
 
     <input type="submit" value="Ok"> <!-- Создаем нопку с надписью Ok-->

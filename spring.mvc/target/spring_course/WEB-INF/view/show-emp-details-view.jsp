@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <body>
@@ -23,6 +24,7 @@
     <br>
     Your car: ${employee.car}
     <br>
+
     Language(s):
     <%--    Создаем не отсортиров. лист с помощью тега:--%>
     <ul>
@@ -32,6 +34,9 @@
             <li>${lang}</li>
         </c:forEach>
     </ul>
+
+    <br>
+    Phone number: ${employee.phoneNumber}
     <h3/>
 </body>
 

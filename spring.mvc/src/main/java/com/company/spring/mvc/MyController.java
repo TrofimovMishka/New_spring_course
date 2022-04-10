@@ -2,11 +2,13 @@ package com.company.spring.mvc;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 @Controller
 //@RequestMapping("/employee") // можно исп для класса
@@ -32,12 +34,21 @@ public class MyController {
         model.addAttribute("employee", new Employee());
         return "ask-emp-details-view";
     }
-
+    //Use hibernate validator
     @RequestMapping("/showDetails")
-    public String showEmployeeDetails(@ModelAttribute("employee") Employee emp){ // указываем какой атрибут будет использовать метод - @ModelAttribute("employee") Employee emp
-        // Тут можем изменять наш полученный обьект ка нам нужно
+    public String showEmployeeDetails(@Valid @ModelAttribute("employee") Employee emp,// @Valid - Указывает что  emp будет проверятся на условия
+                                      BindingResult bindingResult){ // Результат валидации будетт помщен в bindingResult
+        if(bindingResult.hasErrors()){ // Если есть ошибки то спрашиваем еще раз
+            return "ask-emp-details-view";
+        }
         return "show-emp-details-view";
     }
+
+//    @RequestMapping("/showDetails")
+//    public String showEmployeeDetails(@ModelAttribute("employee") Employee emp){ // указываем какой атрибут будет использовать метод - @ModelAttribute("employee") Employee emp
+//        // Тут можем изменять наш полученный обьект ка нам нужно
+//        return "show-emp-details-view";
+//    }
 
 //    @RequestMapping("/showDetails")
 //    public String showEmployeeDetails(){

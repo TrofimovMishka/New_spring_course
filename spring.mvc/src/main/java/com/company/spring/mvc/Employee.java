@@ -1,11 +1,19 @@
 package com.company.spring.mvc;
 
+import javax.validation.constraints.*;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Employee {
+    @Size(min = 2, max = 25, message = "name must be between 2-25 symbols") // Указываем мин или мах длину ввода и сообщение кот выпадет при не соблюдении условия
     private String name;
+//    @NotNull //Метка что это поле обязательное и проверка только на null
+//    @NotEmpty(message = "surname is required field") // Метка что это поле обязательное и проверка на null and empty
+    @NotBlank(message = "surname is required field") // Метка что это поле обязательное и проверка на null, empty  и чтобы небыли одно пробелы или табы
     private String surname;
+
+    @Min(value = 500, message = "must be grater than 499")
+    @Max(value = 50000, message = "must be less than 49999")
     private int salary;
     private String department;
     private Map<String, String> departments;
@@ -14,10 +22,13 @@ public class Employee {
     private String[] languages;
     private Map<String, String> languagesList;
 
+    @Pattern(regexp = "\\d{3}-\\d{2}-\\d{2}", message = "use pattern xxx-xx-xx") // Проверка вводимых данных по регулярке
+    private String phoneNumber;
+
     public Employee() {
         departments = new HashMap<>();
-        departments.put( "Information Technology", "IT"); // key - то что запишем в поле department; value - то что видно в выпадающем списке
-        departments.put( "Human Resouse", "HR");
+        departments.put("Information Technology", "IT"); // key - то что запишем в поле department; value - то что видно в выпадающем списке
+        departments.put("Human Resouse", "HR");
         departments.put("Sales", "Sales");
 
         cars = new HashMap<>();
@@ -30,6 +41,14 @@ public class Employee {
         languagesList.put("Deutch", "DE");
         languagesList.put("French", "FR");
 
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public Map<String, String> getLanguagesList() {
