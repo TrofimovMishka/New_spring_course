@@ -3,11 +3,13 @@ package com.example.spring.mvc_hibernate_aop.service;
 import com.example.spring.mvc_hibernate_aop.dao.EmployeeDAO;
 import com.example.spring.mvc_hibernate_aop.entity.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Component
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
@@ -24,5 +26,17 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Transactional
     public void saveEmployee(Employee employee) {
         employeeDAO.saveEmployee(employee);
+    }
+
+    @Override
+    @Transactional
+    public Employee getEmployee(int id) {
+        return employeeDAO.getEmployee(id);
+    }
+
+    @Override
+    @Transactional
+    public void deleteEmployee(int id) {
+        employeeDAO.deleteEmployee(id);
     }
 }

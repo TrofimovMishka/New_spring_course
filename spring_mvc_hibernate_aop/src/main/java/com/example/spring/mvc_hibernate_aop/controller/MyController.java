@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -45,6 +46,22 @@ public class MyController {
         employeeService.saveEmployee(employee);
 
         //Вернуть обновленный вид первого окна
+        return "redirect:/";
+    }
+
+    //empId - это переменная созданная в all-employee в которой сохранено id работника. Используем его для поиска нашего работника
+    @RequestMapping("/updateInfo")
+    public String updateEmployee(@RequestParam("empId") int id, Model model){
+        //Получим работника из базы:
+        Employee employee = employeeService.getEmployee(id);
+        //Так как наш view employee-info работает с modelAttribute="employee" то добавим атрибут с таким же именем
+        model.addAttribute("employee", employee);
+        return "employee-info";
+    }
+
+    @RequestMapping("/deleteEmployee")
+    public String deleteEmployee(@RequestParam("empId") int id, Model model){
+        employeeService.deleteEmployee(id);
         return "redirect:/";
     }
 }
