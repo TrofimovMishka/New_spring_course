@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="input" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <body>
@@ -20,6 +22,11 @@
         </tr>
 
     </c:forEach>
+
+    <br>
+<%--    Создаем кнопку Add. addNewEmployee - это метод из контролера кот.должен реализовать действие при нажатии на кнопку--%>
+    <input type="button" value="Add"
+           onclick="window.location.href = 'addNewEmployee'"/>
 </table>
 
 </body>

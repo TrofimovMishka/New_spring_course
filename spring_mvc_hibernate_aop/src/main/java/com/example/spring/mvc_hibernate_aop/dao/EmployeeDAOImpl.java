@@ -19,12 +19,17 @@ public class EmployeeDAOImpl implements EmployeeDAO{
     private SessionFactory sessionFactory;
 
     @Override
-    @Transactional // авто открытие и закрытие транзакци
+//    @Transactional // авто открытие и закрытие транзакци
     public List<Employee> getAllEmployees() {
         Session session = sessionFactory.getCurrentSession();
 
         List<Employee> allEmployee  = session.createQuery("from Employee", Employee.class).getResultList();
 
         return allEmployee;
+    }
+
+    @Override
+    public void saveEmployee(Employee employee) {
+        sessionFactory.getCurrentSession().save(employee);
     }
 }
